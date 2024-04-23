@@ -26,6 +26,12 @@ pipeline{
             }
         }
         stage("ADeploy on prod"){
+
+                  input {
+                        message "Should we continue?"
+                        ok "Yes we Should"
+                    }
+
                 steps{
                     // deploy on container -> plugin
                     deploy adapters: [tomcat9(credentialsId: 'ram', path: '', url: 'http://20.121.65.139:8080')], contextPath: '/app', war: '**/*.war'
