@@ -21,12 +21,14 @@ pipeline{
         stage("Deploy on test"){
                 steps{
                     // deploy on container -> piugin
+                    deploy adapters: [tomcat9(credentialsId: 'ram', path: '', url: 'http://20.121.64.144:8080')], contextPath: '/app', war: '**/*.war'
                     echo "========always========"
             }
         }
         stage("ADeploy on prod"){
                 steps{
                     // deploy on container -> plugin
+                    deploy adapters: [tomcat9(credentialsId: 'ram', path: '', url: 'http://20.121.65.139:8080')], contextPath: '/app', war: '**/*.war'
                     echo "========always========"
             }
         }
